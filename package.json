@@ -1,0 +1,22 @@
+{
+  "name": "@thrall/async-chain",
+  "version": "1.0.0",
+  "description": "Chain asynchronous methods with await.",
+  "keywords": [
+    "async",
+    "async await",
+    "async chain",
+    "await",
+    "chaining",
+    "promise",
+    "promises",
+    "resolve"
+  ],
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Komodo123/async-chain.git"
+  }
+}
