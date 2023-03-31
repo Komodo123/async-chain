@@ -143,9 +143,9 @@ Like normal promises, you can use `.then`, `.catch`, and `.finally`:
 
 ## Reference
 
-    function chain(target = global, strict = false): Chainable
+`function chain(target = global, strict = false): Chainable`
 
-    class Chainable(target: object | function, strict = false)
+`class Chainable(target: object | function, strict = false)`
 
 ## Examples
 

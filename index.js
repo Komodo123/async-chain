@@ -47,16 +47,16 @@ export class Chainable extends Function {
     // this.apply will be called immediately after and will use the [ context, 
     // callable ] tuple value this promise is returning.
     this.chain = this.chain.then((context) => {
+      if (!context || (context && typeof context[property] === "undefined")) {
+        if (this.strict) {
+          throw new Error(`Property not defined: ${property} (the` +
+            ` async-chain may have encountered an unexpected value)`);
+        } else {
+          return false;
+        }
+      }
+      
       switch (typeof context[property]) {
-        case "undefined":
-          if (this.strict) {
-            throw new Error(`Property not defined: ${property} (the` +
-              ` async-chain may have encountered an unexpected value)`);
-          } else {
-            // false[property] -> undefined
-            return false;
-          }
-
         case "function":
           return [ context, context[property] ];
           
