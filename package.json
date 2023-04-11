@@ -1,6 +1,6 @@
 {
   "name": "@thrall/async-chain",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Chain asynchronous methods with await.",
   "keywords": [
     "async",
