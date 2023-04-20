@@ -1,7 +1,9 @@
-export function chain(target = global, strict = false): Chainable;
+export function chain(target: any = global, strict = false, finalize = false): Chainable;
 
 class Chainable<T> extends Function {
   constructor(target?: Object | Function, strict?: boolean, finalize?: boolean): ProxyHandler;
+
+  [method: string]: any;
 
   then<X, Y>(
     onfulfilled?: ((value: T) => X | PromiseLike<X> | null | undefined), 

@@ -1,6 +1,6 @@
 {
   "name": "@thrall/async-chain",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Chain asynchronous methods with await.",
   "keywords": [
     "async",
@@ -12,12 +12,12 @@
     "promises",
     "resolve"
   ],
-  "type": "module",
-  "types": "index.d.ts",
-  "main": "index.js",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Komodo123/async-chain.git"
-  }
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts"
 }

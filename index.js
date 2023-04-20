@@ -1,5 +1,5 @@
-export function chain(target = global, strict = false, finalize = true) {
-  return new Chainable(target, strict, finalize);
+export function chain(target = global, strict = false, finalize = false) {
+  return new Chainable(target, strict);
 }
 
 export class Chainable extends Function {
@@ -97,7 +97,7 @@ export class Chainable extends Function {
   apply(target, context, args) {
     // console.log("[[Call]]");
     
-    this.chain = this.chain.then((state) => {
+    this.chain = this.chain.then(async (state) => {
       if (!Array.isArray(state)) {
         // A literal value was returned from [[Get]].
         return state;
@@ -105,8 +105,16 @@ export class Chainable extends Function {
 
       // The context and callee were returned because [[Get]] sent us a 
       // callable.
-      let [ context, callee ] = state;
-      return callee.apply(context, args);
+      try {
+        let [ context, callee ] = state;
+        return await callee.apply(context, args);
+      } catch (e) {
+        if(this.strict) {
+          throw e;
+        }
+
+        return false;
+      }
     });
 
     return this.proxy;

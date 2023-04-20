@@ -23,7 +23,7 @@
 
 ## Motivation
 
-In many programming languages, the builder pattern is a popular way to write expressive APIs that modify an internal state. For example, instead of writing raw SQL queries or using an ORM, the [KnexJS](https://knexjs.org/) allows you to chain together the pieces of the query:
+In many programming languages, the builder pattern is a popular way to write expressive APIs that modify an internal state. For example, instead of writing raw SQL queries or using an ORM, [KnexJS](https://knexjs.org/) allows you to chain together the pieces of the query:
 
     knex('users')
       .select('*')
@@ -101,7 +101,7 @@ That's where `async-chain` comes in! You can either use the `chain` function to 
       .method2()
       .method3();
 
-It is worth noting that while there are many existing libraries that provide methods for chaining asynchronous operations, they arguably add even more boilerplate than just chaining a series of `.then` promises.
+It is worth noting that while there are many existing libraries that provide methods for chaining asynchronous operations. Most of them arguably add even more boilerplate than just chaining a series of `.then` promises.
 
 ## Getting Started
 
@@ -143,9 +143,11 @@ Like normal promises, you can use `.then`, `.catch`, and `.finally`:
 
 ## Reference
 
-`function chain(target = global, strict = false): Chainable`
+    function chain(target = global, strict = false): Chainable
 
-`class Chainable(target: object | function, strict = false)`
+    class Chainable<T> extends Function {
+      constructor(target?: Object | Function, strict?: boolean, finalize?: boolean): ProxyHandler
+    }
 
 ## Examples
 
