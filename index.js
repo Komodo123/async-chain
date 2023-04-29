@@ -61,6 +61,10 @@ export class Chainable extends Function {
     // callable ] tuple value this promise is returning.
     this.chain = this.chain.then((context) => {
       if (!this.defined(context, property)) {
+        if (property === "pipe") {
+          return [context, (operator) => operator(context)];
+        }
+
         if (this.strict) {
           throw new Error(
             `Property not defined: ${property} (the` +

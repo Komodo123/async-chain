@@ -61,7 +61,7 @@ Chains are also very common in functional constructs:
       .sort()
       .reduce((x, y) => x + y)
 
-The problem arises when any function in the chain is asynchronous and returns a promise. This will *not* work:
+The problem arises when any function in the chain is asynchronous and returns a promise. This will _not_ work:
 
     class Builder {
       async method1() {
@@ -129,8 +129,6 @@ You will notice in the example above that properties of an asynchronous result c
 
 Like normal promises, you can use `.then`, `.catch`, and `.finally`:
 
-    import { chain } from "async-chain";
-
     chain(object)
       .method1()
       .method2()
@@ -141,9 +139,26 @@ Like normal promises, you can use `.then`, `.catch`, and `.finally`:
       .catch((error) => console.error(error))
       .finally(() => console.log("Finished"));
 
+The library also adds a "pipe" function (when pipe is not already defined as a property on the chain's context) which allows you to operate on the current value of the chain without having to write a separate chain. For example, instead of:
+
+    let value = await chain([ "1", "2", "3" ])
+      .slice(1) [0];
+
+    value = +value;
+
+    console.log(value); // 2
+
+You can write:
+
+    let value = await chain([ "1", "2", "3" ])
+      .slice(1) [0]
+      .pipe((value) => +value);
+
+    console.log(value); // 2
+
 ## Reference
 
-    function chain(target = global, strict = false): Chainable
+    function chain(target = global, strict = false, finalize = false): Chainable
 
     class Chainable<T> extends Function {
       constructor(target?: Object | Function, strict?: boolean, finalize?: boolean): ProxyHandler
