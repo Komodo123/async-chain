@@ -122,11 +122,11 @@ export class Chainable extends Function {
 
         return result;
       } catch (e) {
-        // console.log("TEST");
         if (this.strict) {
           throw e;
         }
 
+        console.warn(e);
         return false;
       }
     });

@@ -139,7 +139,7 @@ Like normal promises, you can use `.then`, `.catch`, and `.finally`:
       .catch((error) => console.error(error))
       .finally(() => console.log("Finished"));
 
-The library also adds a "pipe" function (when pipe is not already defined as a property on the chain's context) which allows you to operate on the current value of the chain without having to write a separate chain. For example, instead of:
+You can also use the "pipe" function (when pipe is not already defined as a property on the chain's context) which allows you to operate on the current value of the chain without having to write a separate chain. For example, instead of:
 
     let value = await chain([ "1", "2", "3" ])
       .slice(1) [0];
